@@ -25,10 +25,9 @@ public class RukiCharacterController : MonoBehaviour
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private Transform groundCheckPoint;
     [SerializeField] private Vector2 groundCheckSize;
-    private int JumpsLeft;
+    private int jumpsLeft;
     private float vSpeed;
     private bool isGrounded;
-    private bool canJump;
 
     [Header("For WallSliding")]
     [SerializeField] float wallSlideSpeed;
@@ -45,24 +44,25 @@ public class RukiCharacterController : MonoBehaviour
     private bool isWallJumping;
 
     [Header("Audio")]
-    [SerializeField] private AudioSource LoseAudio;
-    [SerializeField] private AudioSource WinAudio;
-    [SerializeField] private AudioSource JumpAudio;
-    [SerializeField] private AudioSource PayAudio;
+    [SerializeField] private AudioSource loseAudio;
+    [SerializeField] private AudioSource winAudio;
+    [SerializeField] private AudioSource jumpAudio;
+    [SerializeField] private AudioSource payAudio;
 
     [Header("Other")]
     private Rigidbody2D rb;
-    private Animator anim;
-    private bool Dead;
+    private Animator animator;
+    private bool isDead;
     [SerializeField] private CinemachineVirtualCamera myCamera;
-    [SerializeField] private float KnockbackForce;
-    [SerializeField] private GameObject Transition;
-    [SerializeField] private Transform Center;
-    [SerializeField] private RuntimeAnimatorController[] Characters;
-    [SerializeField] private ParticleSystem RunningDust;
-    [SerializeField] private ParticleSystem.VelocityOverLifetimeModule RunningDustVelocity;
-    [SerializeField] private ParticleSystem JumpingDust;
-    static public int ChosenCharacter;
+    [SerializeField] private float knockbackForce;
+    [SerializeField] private GameObject transition;
+    [SerializeField] private Transform centerPosition;
+    [SerializeField] private RuntimeAnimatorController[] characterAnimators;
+    [SerializeField] private ParticleSystem runningDust;
+    [SerializeField] private ParticleSystem.VelocityOverLifetimeModule runningDustVelocity;
+    [SerializeField] private ParticleSystem jumpingDust;
+    [SerializeField] private CharacterManager characterManager = null;
+
 
     void Awake()
     {
@@ -72,12 +72,11 @@ public class RukiCharacterController : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        anim = GetComponent<Animator>();
-        RunningDustVelocity = RunningDust.velocityOverLifetime;
-        anim.runtimeAnimatorController = Characters[ChosenCharacter];
+        animator = GetComponent<Animator>();
+        runningDustVelocity = runningDust.velocityOverLifetime;
         isGrounded = true;
-        JumpsLeft = 2;
-        Dead = false;
+        jumpsLeft = 2;
+        isDead = false;
         facingRight = true;
         isWallJumping = false;
         walljumpAngle.Normalize();
@@ -86,7 +85,7 @@ public class RukiCharacterController : MonoBehaviour
 
     void Update()
     {
-        if (Dead) return;
+        if (isDead) return;
         CheckWorld();
         Inputs();
         WallJump();
@@ -94,7 +93,7 @@ public class RukiCharacterController : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        if (Dead) return;
+        if (isDead) return;
         Movement();
         WallSlide();
         
@@ -106,29 +105,27 @@ public class RukiCharacterController : MonoBehaviour
         {
 
             isGrounded = true;
-            JumpsLeft = 2;
-            //canJump = true;
+            jumpsLeft = 2;
             isWallJumping = false;
         }                  
         if (other.gameObject.CompareTag("Enemy"))
         {
-            LoseAudio.Play();
-            anim.SetTrigger("Hit");
+            loseAudio.Play();
+            animator.SetTrigger("Hit");
             GetComponent<BoxCollider2D>().enabled = false;
-            Dead = true;
+            isDead = true;
             rb.velocity = new Vector2(rb.velocity.x, 0);
-            rb.AddForce(new Vector2(0f, KnockbackForce));
+            rb.AddForce(new Vector2(0f, knockbackForce));
             myCamera.Follow = null;
             rb.constraints = RigidbodyConstraints2D.None;
-            Instantiate(Transition, Center.position, Quaternion.identity);
+            Instantiate(transition, centerPosition.position, Quaternion.identity);
             StartCoroutine(LoadLevelAfterDelay(1.5f, SceneManager.GetActiveScene().name));
         }
         if (other.gameObject.CompareTag("finish"))
         {
-            WinAudio.Play();
+            winAudio.Play();
             isGrounded = true;
-            JumpsLeft = 2;
-            //canJump = true;
+            jumpsLeft = 2;
             isWallJumping = false;
         }
 
@@ -138,47 +135,34 @@ public class RukiCharacterController : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Level"))
         {
-            Instantiate(Transition,transform.position,Quaternion.identity);
+            Instantiate(transition,transform.position,Quaternion.identity);
             StartCoroutine(LoadLevelAfterDelay(0.7f, other.gameObject.name));
         }
-        if (other.gameObject.CompareTag("Finish"))
+        else if (other.gameObject.CompareTag("Finish"))
         {
-            WinAudio.Play();
-            Instantiate(Transition, Center.position, Quaternion.identity);
+            winAudio.Play();
+            Instantiate(transition, centerPosition.position, Quaternion.identity);
             StartCoroutine(LoadLevelAfterDelay(0.7f, "Lobby"));
         }
         
-        if (other.gameObject.CompareTag("Character"))
+        else if (other.gameObject.CompareTag("Character"))
         {
-            if (other.gameObject.name == "Froggy" && CoinManager.coins >= 2 && anim.runtimeAnimatorController != Characters[0])
+            UnlockableCharacter chosenCharacter = new UnlockableCharacter();
+            foreach (UnlockableCharacter character in characterManager.GetCharacters())
             {
-                PayAudio.Play();
-                CoinManager.coins -= 2;
-                anim.runtimeAnimatorController = Characters[0];
-                ChosenCharacter = 0;
-            }
-            else if (other.gameObject.name == "PinkMan" && CoinManager.coins >= 7 && anim.runtimeAnimatorController != Characters[1])
-            {
-                PayAudio.Play();
-                CoinManager.coins -= 7;
-                anim.runtimeAnimatorController = Characters[1];
-                ChosenCharacter = 1;
-            }
-            else if (other.gameObject.name == "VirtualGuy" && CoinManager.coins >= 5 && anim.runtimeAnimatorController != Characters[2])
-            {
-                PayAudio.Play();
-                CoinManager.coins -= 5;
-                anim.runtimeAnimatorController = Characters[2];
-                ChosenCharacter = 2;
-            }
-            else if (other.gameObject.name == "MaskShadow" && CoinManager.coins >= 10 && anim.runtimeAnimatorController != Characters[3])
-            {
-                PayAudio.Play();
-                CoinManager.coins -= 10;
-                anim.runtimeAnimatorController = Characters[3];
-                ChosenCharacter = 3;
+                if (character.getName() == other.gameObject.name)
+                {
+                    chosenCharacter = character;
+                    break;
+                }
             }
 
+            if (gameObject.name != chosenCharacter.getName() && CoinManager.coins >= chosenCharacter.getPrice() && animator.runtimeAnimatorController != chosenCharacter.GetAnimator()) {
+                payAudio.Play();
+                CoinManager.coins -= chosenCharacter.getPrice();
+                animator.runtimeAnimatorController = chosenCharacter.GetAnimator().runtimeAnimatorController;
+                gameObject.name = chosenCharacter.getName();
+            }
         }
     }
 
@@ -190,12 +174,12 @@ public class RukiCharacterController : MonoBehaviour
     private void Movement()
     {
         vSpeed = rb.velocity.y;
-        anim.SetFloat("vSpeed", vSpeed);
+        animator.SetFloat("vSpeed", vSpeed);
         Flip(XDirectionalInput);
         if (isGrounded)
         {
             rb.velocity = new Vector2(XDirectionalInput * playerSpeed, rb.velocity.y);
-            anim.SetFloat("Speed", Mathf.Abs(XDirectionalInput));
+            animator.SetFloat("Speed", Mathf.Abs(XDirectionalInput));
         }
         else if (!isGrounded && (!isWallSliding || !isTouchingWall) && XDirectionalInput != 0)
         {
@@ -206,11 +190,11 @@ public class RukiCharacterController : MonoBehaviour
             }
         }
         if (isGrounded && (XDirectionalInput > 0.01 || XDirectionalInput < -0.01)) {
-            if (!RunningDust.isPlaying) RunningDust.Play();
+            if (!runningDust.isPlaying) runningDust.Play();
         }
         else
         {
-            if (RunningDust.isPlaying) RunningDust.Stop();
+            if (runningDust.isPlaying) runningDust.Stop();
 
 
         }
@@ -221,26 +205,25 @@ public class RukiCharacterController : MonoBehaviour
     private void Jump()
     {
         if (isGrounded) {
-            JumpsLeft = 2;
+            jumpsLeft = 2;
         }
 
-        if (Input.GetKeyDown(KeyCode.Space) && JumpsLeft > 0 && !isWallJumping)
+        if (Input.GetKeyDown(KeyCode.Space) && jumpsLeft > 0 && !isWallJumping)
         {
-            if (JumpingDust.isPlaying) JumpingDust.Stop();
-            if (!JumpingDust.isPlaying) JumpingDust.Play();
-            JumpsLeft-=1;
-            JumpAudio.Play();
+            if (jumpingDust.isPlaying) jumpingDust.Stop();
+            if (!jumpingDust.isPlaying) jumpingDust.Play();
+            jumpsLeft-=1;
+            //jumpAudio.Play();
             rb.velocity = new Vector2(rb.velocity.x, 0);
             rb.AddForce(new Vector2(0f, jumpForce));
-            //canJump = false;
             isGrounded = false;
-            if (JumpsLeft == 0)
+            if (jumpsLeft == 0)
             {
-                anim.SetTrigger("DoubleJump");
+                animator.SetTrigger("DoubleJump");
             }
         }
         
-        anim.SetBool("isGrounded", isGrounded);
+        animator.SetBool("isGrounded", isGrounded);
 
 
     }
@@ -252,7 +235,7 @@ public class RukiCharacterController : MonoBehaviour
             walljumpDirection *= -1;
             facingRight = !facingRight;
             transform.localScale= new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
-            RunningDustVelocity.x = -RunningDustVelocity.x.constantMax; //rotating Particle System
+            runningDustVelocity.x = -runningDustVelocity.x.constantMax; //rotating Particle System
         }
     }
 
@@ -269,24 +252,24 @@ public class RukiCharacterController : MonoBehaviour
         if (isWallSliding)
         {
             rb.velocity = new Vector2(rb.velocity.x, -wallSlideSpeed);
-            JumpsLeft = 2;
+            jumpsLeft = 2;
         }
-        anim.SetBool("isSliding", isTouchingWall);
+        animator.SetBool("isSliding", isTouchingWall);
     }
 
     private void WallJump()
     {
         if ((isWallSliding) && Input.GetKeyDown(KeyCode.Space))
         {
-            JumpAudio.Play();
-            JumpingDust.Play();
+            //jumpAudio.Play();
+            jumpingDust.Play();
             rb.AddForce(new Vector2(walljumpforce * walljumpAngle.x * walljumpDirection, walljumpforce * walljumpAngle.y), ForceMode2D.Impulse);
             isWallJumping = true;
             walljumpDirection *= -1;
             facingRight = !facingRight;
             transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
-            RunningDustVelocity.x = -RunningDustVelocity.x.constantMax; //rotating Particle System
-            JumpsLeft -= 1;
+            runningDustVelocity.x = -runningDustVelocity.x.constantMax; //rotating Particle System
+            jumpsLeft -= 1;
 
         }
     }

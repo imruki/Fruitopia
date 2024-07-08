@@ -20,7 +20,7 @@ TagManager:
   - UI
   - Wall
   - Ceiling
-  - 
+  - Transition
   - 
   - 
   - 
@@ -49,5 +49,8 @@ TagManager:
     uniqueID: 0
     locked: 0
   - name: Player
+    uniqueID: 2757879227
+    locked: 0
+  - name: Transition
     uniqueID: 2757879227
     locked: 0

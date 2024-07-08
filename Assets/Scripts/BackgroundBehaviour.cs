@@ -24,8 +24,6 @@ public class BackgroundBehaviour : MonoBehaviour
     private void FixedUpdate()
     {
         transform.position = new Vector3(transform.position.x + parallaxEffectMultiplier.x, transform.position.y + parallaxEffectMultiplier.y);
-        Debug.Log("new"+ transform.position);
-        Debug.Log("difference" + (firstPosition.x - transform.position.x));
         
         if (Mathf.Abs(firstPosition.x - transform.position.x) >= textureUnitSizeX*3)
         {
