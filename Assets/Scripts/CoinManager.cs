@@ -4,13 +4,25 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System;
+using UnityEngine.SceneManagement;
 
-public class CoinManager : MonoBehaviour
+public static class CoinManager
 {
-    static public int coins;
-    public TextMeshProUGUI CoinText;
-    void Update()
+    private static int TotalCoins;
+
+    public static void AddCoins(int amount)
     {
-        CoinText.text = "Coins : " + coins.ToString();
+        TotalCoins += amount;
+    }
+
+    public static void ResetCoins()
+    {
+        TotalCoins = 0;
+    }
+
+    public static int GetTotalCoins()
+    {
+        return TotalCoins;
     }
 }
+

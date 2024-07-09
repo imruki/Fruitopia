@@ -573,7 +573,7 @@ GameObject:
   - component: {fileID: 312415472}
   m_Layer: 0
   m_Name: VirtualGuy
-  m_TagString: Character
+  m_TagString: Unlockable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -45055,7 +45055,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'COST : 5'
+  m_text: VirtualGuy
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 2a21c331403092044b4821d9957c0239, type: 2}
   m_sharedMaterial: {fileID: 9091938544060693541, guid: 2a21c331403092044b4821d9957c0239,
@@ -45228,7 +45228,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'COST : 7'
+  m_text: PinkMan
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 2a21c331403092044b4821d9957c0239, type: 2}
   m_sharedMaterial: {fileID: 9091938544060693541, guid: 2a21c331403092044b4821d9957c0239,
@@ -45741,7 +45741,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'COST : 10'
+  m_text: MaskShadow
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 2a21c331403092044b4821d9957c0239, type: 2}
   m_sharedMaterial: {fileID: 9091938544060693541, guid: 2a21c331403092044b4821d9957c0239,
@@ -46075,7 +46075,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'COST : 2'
+  m_text: Froggy
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 2a21c331403092044b4821d9957c0239, type: 2}
   m_sharedMaterial: {fileID: 9091938544060693541, guid: 2a21c331403092044b4821d9957c0239,
@@ -48196,7 +48196,7 @@ GameObject:
   - component: {fileID: 1387225761}
   m_Layer: 0
   m_Name: PinkMan
-  m_TagString: Character
+  m_TagString: Unlockable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -48533,15 +48533,19 @@ MonoBehaviour:
   - characterName: Froggy
     price: 2
     animator: {fileID: 1701303851}
+    priceText: {fileID: 1180561439}
   - characterName: PinkMan
     price: 7
     animator: {fileID: 1387225762}
+    priceText: {fileID: 813775217}
   - characterName: VirtualGuy
     price: 5
     animator: {fileID: 312415473}
+    priceText: {fileID: 770813211}
   - characterName: MaskShadow
     price: 10
     animator: {fileID: 1459490249}
+    priceText: {fileID: 1024257478}
 --- !u!4 &1426544620
 Transform:
   m_ObjectHideFlags: 0
@@ -48571,7 +48575,7 @@ GameObject:
   - component: {fileID: 1459490251}
   m_Layer: 0
   m_Name: MaskShadow
-  m_TagString: Character
+  m_TagString: Unlockable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -49102,7 +49106,7 @@ GameObject:
   - component: {fileID: 1701303850}
   m_Layer: 0
   m_Name: Froggy
-  m_TagString: Character
+  m_TagString: Unlockable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -49478,7 +49482,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'COINS : 0'
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 2a21c331403092044b4821d9957c0239, type: 2}
   m_sharedMaterial: {fileID: 9091938544060693541, guid: 2a21c331403092044b4821d9957c0239,

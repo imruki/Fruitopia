@@ -1093,7 +1093,7 @@ Tilemap:
     second:
       serializedVersion: 2
       m_TileIndex: 15
-      m_TileSpriteIndex: 27
+      m_TileSpriteIndex: 32
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -1103,7 +1103,7 @@ Tilemap:
     second:
       serializedVersion: 2
       m_TileIndex: 16
-      m_TileSpriteIndex: 26
+      m_TileSpriteIndex: 31
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -1113,7 +1113,7 @@ Tilemap:
     second:
       serializedVersion: 2
       m_TileIndex: 18
-      m_TileSpriteIndex: 25
+      m_TileSpriteIndex: 30
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -1123,7 +1123,7 @@ Tilemap:
     second:
       serializedVersion: 2
       m_TileIndex: 17
-      m_TileSpriteIndex: 24
+      m_TileSpriteIndex: 29
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -1143,7 +1143,7 @@ Tilemap:
     second:
       serializedVersion: 2
       m_TileIndex: 19
-      m_TileSpriteIndex: 22
+      m_TileSpriteIndex: 28
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -1313,7 +1313,7 @@ Tilemap:
     second:
       serializedVersion: 2
       m_TileIndex: 6
-      m_TileSpriteIndex: 21
+      m_TileSpriteIndex: 27
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -1808,14 +1808,24 @@ Tilemap:
     m_Data: {fileID: 0}
   - m_RefCount: 0
     m_Data: {fileID: 0}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
   - m_RefCount: 1
     m_Data: {fileID: 3631698497521491291, guid: d4e5f2609a8bc9f4daef297d145268cc,
       type: 3}
   - m_RefCount: 1
     m_Data: {fileID: 1918823624152674874, guid: d4e5f2609a8bc9f4daef297d145268cc,
       type: 3}
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
   - m_RefCount: 1
     m_Data: {fileID: 1383883272258276261, guid: d4e5f2609a8bc9f4daef297d145268cc,
       type: 3}
@@ -1828,16 +1838,6 @@ Tilemap:
   - m_RefCount: 1
     m_Data: {fileID: 4218957088357342075, guid: d4e5f2609a8bc9f4daef297d145268cc,
       type: 3}
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
   - m_RefCount: 1
     m_Data: {fileID: 4716054802376701170, guid: d4e5f2609a8bc9f4daef297d145268cc,
       type: 3}
@@ -1992,7 +1992,7 @@ GameObject:
   - component: {fileID: 219610349}
   m_Layer: 0
   m_Name: Pineapple_0 (10)
-  m_TagString: Untagged
+  m_TagString: Collectible
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2026,7 +2026,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CollectedAnimation: {fileID: 6290461467634555117, guid: 5b89475835a78d14cb4fc28ad72a5d54,
     type: 3}
-  Collect: {fileID: 4187915862964464798}
 --- !u!61 &219610350
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2160,7 +2159,7 @@ GameObject:
   - component: {fileID: 320126076}
   m_Layer: 0
   m_Name: Pineapple_0 (13)
-  m_TagString: Untagged
+  m_TagString: Collectible
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2194,7 +2193,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CollectedAnimation: {fileID: 6290461467634555117, guid: 5b89475835a78d14cb4fc28ad72a5d54,
     type: 3}
-  Collect: {fileID: 4187915862964464798}
 --- !u!61 &320126077
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2328,7 +2326,7 @@ GameObject:
   - component: {fileID: 350857184}
   m_Layer: 0
   m_Name: Pineapple_0 (3)
-  m_TagString: Untagged
+  m_TagString: Collectible
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2362,7 +2360,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CollectedAnimation: {fileID: 6290461467634555117, guid: 5b89475835a78d14cb4fc28ad72a5d54,
     type: 3}
-  Collect: {fileID: 4187915862964464798}
 --- !u!61 &350857185
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2496,7 +2493,7 @@ GameObject:
   - component: {fileID: 373184227}
   m_Layer: 0
   m_Name: Pineapple_0 (2)
-  m_TagString: Untagged
+  m_TagString: Collectible
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2530,7 +2527,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CollectedAnimation: {fileID: 6290461467634555117, guid: 5b89475835a78d14cb4fc28ad72a5d54,
     type: 3}
-  Collect: {fileID: 4187915862964464798}
 --- !u!61 &373184228
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2649,6 +2645,51 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &376255528
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 376255530}
+  - component: {fileID: 376255529}
+  m_Layer: 0
+  m_Name: LevelCoinManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &376255529
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 376255528}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d3ac6a0a8a0e9040886558fa3c2a8ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  levelCoinsText: {fileID: 4667472571457783313}
+--- !u!4 &376255530
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 376255528}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 123.5735, y: 697.6599, z: -5.935542}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 18
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &430271109
 GameObject:
   m_ObjectHideFlags: 0
@@ -2664,7 +2705,7 @@ GameObject:
   - component: {fileID: 430271111}
   m_Layer: 0
   m_Name: Pineapple_0
-  m_TagString: Untagged
+  m_TagString: Collectible
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2698,7 +2739,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CollectedAnimation: {fileID: 6290461467634555117, guid: 5b89475835a78d14cb4fc28ad72a5d54,
     type: 3}
-  Collect: {fileID: 4187915862964464798}
 --- !u!61 &430271112
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3154,7 +3194,7 @@ GameObject:
   - component: {fileID: 501766347}
   m_Layer: 0
   m_Name: Pineapple_0 (5)
-  m_TagString: Untagged
+  m_TagString: Collectible
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3188,7 +3228,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CollectedAnimation: {fileID: 6290461467634555117, guid: 5b89475835a78d14cb4fc28ad72a5d54,
     type: 3}
-  Collect: {fileID: 4187915862964464798}
 --- !u!61 &501766348
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3546,7 +3585,7 @@ GameObject:
   - component: {fileID: 608278974}
   m_Layer: 0
   m_Name: Pineapple_0 (11)
-  m_TagString: Untagged
+  m_TagString: Collectible
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3580,7 +3619,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CollectedAnimation: {fileID: 6290461467634555117, guid: 5b89475835a78d14cb4fc28ad72a5d54,
     type: 3}
-  Collect: {fileID: 4187915862964464798}
 --- !u!61 &608278975
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -36092,7 +36130,7 @@ GameObject:
   - component: {fileID: 832065867}
   m_Layer: 0
   m_Name: Pineapple_0 (7)
-  m_TagString: Untagged
+  m_TagString: Collectible
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -36126,7 +36164,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CollectedAnimation: {fileID: 6290461467634555117, guid: 5b89475835a78d14cb4fc28ad72a5d54,
     type: 3}
-  Collect: {fileID: 4187915862964464798}
 --- !u!61 &832065868
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -36380,7 +36417,7 @@ GameObject:
   - component: {fileID: 925326424}
   m_Layer: 0
   m_Name: Pineapple_0 (9)
-  m_TagString: Untagged
+  m_TagString: Collectible
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -36414,7 +36451,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CollectedAnimation: {fileID: 6290461467634555117, guid: 5b89475835a78d14cb4fc28ad72a5d54,
     type: 3}
-  Collect: {fileID: 4187915862964464798}
 --- !u!61 &925326425
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -36737,7 +36773,7 @@ GameObject:
   - component: {fileID: 1040357994}
   m_Layer: 0
   m_Name: Pineapple_0 (8)
-  m_TagString: Untagged
+  m_TagString: Collectible
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -36771,7 +36807,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CollectedAnimation: {fileID: 6290461467634555117, guid: 5b89475835a78d14cb4fc28ad72a5d54,
     type: 3}
-  Collect: {fileID: 4187915862964464798}
 --- !u!61 &1040357995
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -36905,7 +36940,7 @@ GameObject:
   - component: {fileID: 1076161760}
   m_Layer: 0
   m_Name: Pineapple_0 (1)
-  m_TagString: Untagged
+  m_TagString: Collectible
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -36939,7 +36974,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CollectedAnimation: {fileID: 6290461467634555117, guid: 5b89475835a78d14cb4fc28ad72a5d54,
     type: 3}
-  Collect: {fileID: 4187915862964464798}
 --- !u!61 &1076161761
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -37848,7 +37882,7 @@ GameObject:
   - component: {fileID: 1360877623}
   m_Layer: 0
   m_Name: Pineapple_0 (6)
-  m_TagString: Untagged
+  m_TagString: Collectible
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -37882,7 +37916,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CollectedAnimation: {fileID: 6290461467634555117, guid: 5b89475835a78d14cb4fc28ad72a5d54,
     type: 3}
-  Collect: {fileID: 4187915862964464798}
 --- !u!61 &1360877624
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -38352,7 +38385,7 @@ GameObject:
   - component: {fileID: 1485023743}
   m_Layer: 0
   m_Name: Pineapple_0 (12)
-  m_TagString: Untagged
+  m_TagString: Collectible
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -38386,7 +38419,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CollectedAnimation: {fileID: 6290461467634555117, guid: 5b89475835a78d14cb4fc28ad72a5d54,
     type: 3}
-  Collect: {fileID: 4187915862964464798}
 --- !u!61 &1485023744
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -39855,7 +39887,7 @@ Tilemap:
     second:
       serializedVersion: 2
       m_TileIndex: 21
-      m_TileSpriteIndex: 17
+      m_TileSpriteIndex: 28
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -40474,9 +40506,8 @@ Tilemap:
     m_Data: {fileID: 0}
   - m_RefCount: 0
     m_Data: {fileID: 0}
-  - m_RefCount: 1
-    m_Data: {fileID: -3581127029532586042, guid: d4e5f2609a8bc9f4daef297d145268cc,
-      type: 3}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
   - m_RefCount: 47
     m_Data: {fileID: 8704577166008928185, guid: d4e5f2609a8bc9f4daef297d145268cc,
       type: 3}
@@ -40499,8 +40530,9 @@ Tilemap:
     m_Data: {fileID: 0}
   - m_RefCount: 0
     m_Data: {fileID: 0}
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
+  - m_RefCount: 1
+    m_Data: {fileID: -3581127029532586042, guid: d4e5f2609a8bc9f4daef297d145268cc,
+      type: 3}
   - m_RefCount: 1
     m_Data: {fileID: 3631698497521491291, guid: d4e5f2609a8bc9f4daef297d145268cc,
       type: 3}
@@ -41312,7 +41344,7 @@ GameObject:
   - component: {fileID: 1875376348}
   m_Layer: 0
   m_Name: Pineapple_0 (4)
-  m_TagString: Untagged
+  m_TagString: Collectible
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -41346,7 +41378,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CollectedAnimation: {fileID: 6290461467634555117, guid: 5b89475835a78d14cb4fc28ad72a5d54,
     type: 3}
-  Collect: {fileID: 4187915862964464798}
 --- !u!61 &1875376349
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -41488,6 +41519,16 @@ PrefabInstance:
       propertyPath: loseAudio
       value: 
       objectReference: {fileID: 5826067926353972657}
+    - target: {fileID: 265179690075002313, guid: 18c0c16503748df478a3a7f70f3bd857,
+        type: 3}
+      propertyPath: CollectSound
+      value: 
+      objectReference: {fileID: 4187915862964464798}
+    - target: {fileID: 265179690075002313, guid: 18c0c16503748df478a3a7f70f3bd857,
+        type: 3}
+      propertyPath: levelCoinManager
+      value: 
+      objectReference: {fileID: 376255529}
     - target: {fileID: 2155061168977152175, guid: 18c0c16503748df478a3a7f70f3bd857,
         type: 3}
       propertyPath: m_Name
@@ -42670,19 +42711,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9d87d457fc24840448286d610d7a5e81, type: 3}
---- !u!114 &4667472571457783312
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4667472571457783326}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a5a483a5658f7534db208d6962f7e028, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  CoinText: {fileID: 4667472571457783313}
 --- !u!114 &4667472571457783313
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -42731,8 +42759,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 60
-  m_fontSizeBase: 60
+  m_fontSize: 30
+  m_fontSizeBase: 30
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -42767,7 +42795,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 1
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: -119.01614, w: 0}
+  m_margin: {x: 0, y: 0, z: -921.57825, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -42792,7 +42820,6 @@ GameObject:
   - component: {fileID: 4667472571457783327}
   - component: {fileID: 4667472571457783314}
   - component: {fileID: 4667472571457783313}
-  - component: {fileID: 4667472571457783312}
   m_Layer: 0
   m_Name: Text (TMP)
   m_TagString: Untagged

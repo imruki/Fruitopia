@@ -2,6 +2,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.SceneManagement;
@@ -48,6 +49,7 @@ public class RukiCharacterController : MonoBehaviour
     [SerializeField] private AudioSource winAudio;
     [SerializeField] private AudioSource jumpAudio;
     [SerializeField] private AudioSource payAudio;
+    [SerializeField] private AudioSource CollectSound;
 
     [Header("Other")]
     private Rigidbody2D rb;
@@ -62,7 +64,8 @@ public class RukiCharacterController : MonoBehaviour
     [SerializeField] private ParticleSystem.VelocityOverLifetimeModule runningDustVelocity;
     [SerializeField] private ParticleSystem jumpingDust;
     [SerializeField] private CharacterManager characterManager = null;
-
+    [SerializeField] private LevelCoinManager levelCoinManager = null;
+    [SerializeField] private TMP_Text totalCoinsText = null;
 
     void Awake()
     {
@@ -80,16 +83,22 @@ public class RukiCharacterController : MonoBehaviour
         facingRight = true;
         isWallJumping = false;
         walljumpAngle.Normalize();
-
-        foreach (UnlockableCharacter character in characterManager.GetCharacters())
+        if (totalCoinsText != null)
         {
-            if (character.getName() == gameObject.name)
+            totalCoinsText.text = "Coins : " + CoinManager.GetTotalCoins();
+        }
+        if (characterManager != null) {
+            foreach (UnlockableCharacter character in characterManager.GetCharacters())
             {
-                character.unlock();
-                character.setPriceText();
-                break;
+                if (character.getName() == gameObject.name)
+                {
+                    character.unlock();
+                    character.setPriceText();
+                    break;
+                }
             }
         }
+        
     }
 
     void Update()
@@ -117,7 +126,7 @@ public class RukiCharacterController : MonoBehaviour
             jumpsLeft = 2;
             isWallJumping = false;
         }                  
-        if (other.gameObject.CompareTag("Enemy"))
+        else if (other.gameObject.CompareTag("Enemy"))
         {
             loseAudio.Play();
             animator.SetTrigger("Hit");
@@ -129,13 +138,7 @@ public class RukiCharacterController : MonoBehaviour
             rb.constraints = RigidbodyConstraints2D.None;
             Instantiate(transition, centerPosition.position, Quaternion.identity);
             StartCoroutine(LoadLevelAfterDelay(1.5f, SceneManager.GetActiveScene().name));
-        }
-        if (other.gameObject.CompareTag("finish"))
-        {
-            winAudio.Play();
-            isGrounded = true;
-            jumpsLeft = 2;
-            isWallJumping = false;
+            levelCoinManager.LoseLevel();
         }
 
 
@@ -152,6 +155,7 @@ public class RukiCharacterController : MonoBehaviour
             winAudio.Play();
             Instantiate(transition, centerPosition.position, Quaternion.identity);
             StartCoroutine(LoadLevelAfterDelay(0.7f, "Lobby"));
+            levelCoinManager.CompleteLevel();
         }
         
         else if (other.gameObject.CompareTag("Unlockable"))
@@ -167,7 +171,7 @@ public class RukiCharacterController : MonoBehaviour
             }
 
             if (gameObject.name != chosenCharacter.getName() && 
-                (CoinManager.coins >= chosenCharacter.getPrice() || chosenCharacter.isUnlocked()) && 
+                (CoinManager.GetTotalCoins() >= chosenCharacter.getPrice() || chosenCharacter.isUnlocked()) && 
                 animator.runtimeAnimatorController != chosenCharacter.GetAnimator()) {
 
                 animator.runtimeAnimatorController = chosenCharacter.GetAnimator().runtimeAnimatorController;
@@ -175,12 +179,18 @@ public class RukiCharacterController : MonoBehaviour
                 if (!chosenCharacter.isUnlocked())
                 {
                     payAudio.Play();
-                    CoinManager.coins -= chosenCharacter.getPrice();
+                    CoinManager.AddCoins(-chosenCharacter.getPrice());
+                    totalCoinsText.text = "Coins : " + CoinManager.GetTotalCoins();
                     chosenCharacter.unlock();
                     chosenCharacter.setPriceText();
                 }
                 
             }
+        }
+        else if (other.gameObject.CompareTag("Collectible"))
+        {
+            levelCoinManager.CollectCoin();
+            CollectSound.Play();
         }
     }
 

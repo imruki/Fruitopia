@@ -11,6 +11,8 @@ TagManager:
   - Character
   - Wall
   - Ceiling
+  - Unlockable
+  - Collectible
   layers:
   - Default
   - TransparentFX
