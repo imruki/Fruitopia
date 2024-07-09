@@ -81,6 +81,15 @@ public class RukiCharacterController : MonoBehaviour
         isWallJumping = false;
         walljumpAngle.Normalize();
 
+        foreach (UnlockableCharacter character in characterManager.GetCharacters())
+        {
+            if (character.getName() == gameObject.name)
+            {
+                character.unlock();
+                character.setPriceText();
+                break;
+            }
+        }
     }
 
     void Update()
@@ -145,7 +154,7 @@ public class RukiCharacterController : MonoBehaviour
             StartCoroutine(LoadLevelAfterDelay(0.7f, "Lobby"));
         }
         
-        else if (other.gameObject.CompareTag("Character"))
+        else if (other.gameObject.CompareTag("Unlockable"))
         {
             UnlockableCharacter chosenCharacter = new UnlockableCharacter();
             foreach (UnlockableCharacter character in characterManager.GetCharacters())
@@ -157,11 +166,20 @@ public class RukiCharacterController : MonoBehaviour
                 }
             }
 
-            if (gameObject.name != chosenCharacter.getName() && CoinManager.coins >= chosenCharacter.getPrice() && animator.runtimeAnimatorController != chosenCharacter.GetAnimator()) {
-                payAudio.Play();
-                CoinManager.coins -= chosenCharacter.getPrice();
+            if (gameObject.name != chosenCharacter.getName() && 
+                (CoinManager.coins >= chosenCharacter.getPrice() || chosenCharacter.isUnlocked()) && 
+                animator.runtimeAnimatorController != chosenCharacter.GetAnimator()) {
+
                 animator.runtimeAnimatorController = chosenCharacter.GetAnimator().runtimeAnimatorController;
                 gameObject.name = chosenCharacter.getName();
+                if (!chosenCharacter.isUnlocked())
+                {
+                    payAudio.Play();
+                    CoinManager.coins -= chosenCharacter.getPrice();
+                    chosenCharacter.unlock();
+                    chosenCharacter.setPriceText();
+                }
+                
             }
         }
     }
