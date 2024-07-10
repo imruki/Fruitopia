@@ -23,7 +23,6 @@ public class RukiCharacterController : MonoBehaviour
 
     [Header("For Jumping")]
     [SerializeField] private float jumpForce = 16f;
-    [SerializeField] private LayerMask groundLayer;
     [SerializeField] private Transform groundCheckPoint;
     [SerializeField] private Vector2 groundCheckSize;
     private int jumpsLeft;
